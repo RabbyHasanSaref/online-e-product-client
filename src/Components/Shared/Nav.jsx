@@ -18,7 +18,7 @@ const Nav = () => {
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#F43F5E",
-      cancelButtonColor: "#111",
+      cancelButtonColor: "#4A5568",
       confirmButtonText: "Yes, Log Out!",
     }).then(async (result) => {
       if (result.isConfirmed) {

@@ -10,7 +10,7 @@ const ProductCard = ({ product }) => {
     creationDate,
   } = product;
   return (
-    <div className="max-w-sm rounded-lg overflow-hidden shadow-lg bg-white hover:shadow-xl transition-shadow duration-300">
+    <div className="rounded-lg overflow-hidden shadow-lg bg-white hover:shadow-2xl transition-shadow duration-300">
       <img
         className="w-full h-48 object-cover"
         src={productImage}

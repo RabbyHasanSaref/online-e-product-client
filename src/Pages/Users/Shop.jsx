@@ -32,7 +32,7 @@ const Shop = () => {
           import.meta.env.VITE_API_URL
         }/getCount?filter=${filter}&search=${search}`
       );
-      console.log(data.count)
+      console.log(data.count);
       setCount(data.count);
     };
     getCount();
@@ -59,9 +59,10 @@ const Shop = () => {
 
   const pages = [...Array(numberOfPages).keys()].map((element) => element + 1);
   return (
-    <div className="container px-6 mx-auto min-h-[calc(100vh-302px)] my-10 flex flex-col justify-between">
+    <div className="container mx-auto min-h-[calc(100vh-302px)] my-10 flex flex-col justify-between">
       <div>
-        <div className="flex flex-col md:flex-row justify-center items-center gap-5 ">
+        {/* tablet/pc  */}
+        <div className="hidden md:flex flex-col md:flex-row md:justify-center md:items-center gap-5 flex-wrap flex-shrink">
           <div>
             <select
               onChange={(e) => {
@@ -133,10 +134,100 @@ const Shop = () => {
               <option value="old">Oldest First</option>
             </select>
           </div>
-          <button onClick={handleReset} className="btn">
+          <button onClick={handleReset} className="btn bg-gray-600 text-white hover:bg-gray-700">
             Reset
           </button>
         </div>
+        {/* mobile  */}
+        <div className="md:hidden flex flex-col md:flex-row md:justify-between md:items-center gap-4 md:gap-6 flex-wrap">
+          <div className="flex-1 min-w-[200px]">
+            <select
+              onChange={(e) => {
+                setFilter(e.target.value);
+                setCurrentPage(1);
+              }}
+              value={filter}
+              name="category"
+              id="category"
+              className="border p-3 rounded-lg w-full"
+            >
+              <option value="">Filter By Category</option>
+              <option value="Smartphones">Smartphones</option>
+              <option value="Laptops">Laptops</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Wearables">Wearables</option>
+              <option value="Tablets">Tablets</option>
+              <option value="Desktops">Desktops</option>
+              <option value="Networking">Networking</option>
+            </select>
+          </div>
+
+          {/* Search Form */}
+          <form onSubmit={handleSearch} className="flex-1 min-w-[200px]">
+            <div className="flex border rounded-lg overflow-hidden">
+              <input
+                className="px-4 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none flex-1"
+                type="text"
+                name="search"
+                placeholder="Enter Product Name"
+              />
+              <button
+                type="submit"
+                className="px-4 py-2 text-sm font-medium text-gray-100 uppercase transition-colors duration-300 transform bg-rose-500 rounded-r-md hover:bg-rose-600 focus:outline-none"
+              >
+                Search
+              </button>
+            </div>
+          </form>
+
+          {/* Sort By Price */}
+          <div className="flex-1 min-w-[200px]">
+            <select
+              onChange={(e) => {
+                setSortByPrice(e.target.value);
+                setCurrentPage(1);
+              }}
+              value={sortByPrice}
+              name="sortByPrice"
+              id="sortByPrice"
+              className="border p-3 rounded-md w-full"
+            >
+              <option value="">Sort By Price</option>
+              <option value="L2H">Low to High</option>
+              <option value="H2L">High to Low</option>
+            </select>
+          </div>
+
+          {/* Sort By Date */}
+          <div className="flex-1 min-w-[200px]">
+            <select
+              onChange={(e) => {
+                setSortByDate(e.target.value);
+                setCurrentPage(1);
+              }}
+              value={sortByDate}
+              name="sortByDate"
+              id="sortByDate"
+              className="border p-3 rounded-md w-full"
+            >
+              <option value="">Sort By Date</option>
+              <option value="new">Newest First</option>
+              <option value="old">Oldest First</option>
+            </select>
+          </div>
+
+          {/* Reset Button */}
+          <div className="flex-1 min-w-[200px]">
+            <button
+              onClick={handleReset}
+              className="w-full py-2 text-sm font-medium text-white bg-gray-700 rounded-md hover:bg-gray-800 focus:outline-none"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+        
+        {/* product cards */}
         <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3">
           {products?.map((product, idx) => (
             <ProductCard key={idx} product={product} />
@@ -149,7 +240,7 @@ const Shop = () => {
         <button
           disabled={currentPage === 1}
           onClick={() => handlePagination(currentPage - 1)}
-          className="px-4 py-2 mx-1 text-gray-700 disabled:text-gray-500 capitalize bg-gray-200 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-blue-500  hover:text-white"
+          className="px-4 py-2 mx-1 text-gray-700 disabled:text-gray-500 capitalize bg-gray-200 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-rose-500  hover:text-white"
         >
           <div className="flex items-center -mx-1">
             <svg
@@ -170,7 +261,8 @@ const Shop = () => {
             <span className="mx-1">Previous</span>
           </div>
         </button>
-
+        
+        {/* pagination number buttons  */}
         {pages.map((btnNum) => (
           <button
             onClick={() => handlePagination(btnNum)}
@@ -187,7 +279,7 @@ const Shop = () => {
         <button
           disabled={currentPage === numberOfPages}
           onClick={() => handlePagination(currentPage + 1)}
-          className="px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md hover:bg-blue-500 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500"
+          className="px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md hover:bg-rose-500 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500"
         >
           <div className="flex items-center -mx-1">
             <span className="mx-1">Next</span>
