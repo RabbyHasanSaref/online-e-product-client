@@ -16,14 +16,8 @@ const Shop = () => {
   const [count, setCount] = useState(0);
   const numberOfPages = Math.ceil(count / itemsPerPage);
   const [products, setProducts] = useState([]);
-  const formRef = useRef(null);
   const [priceRange, setPriceRange] = useState([0, 2000]);
-
-  // useEffect(() => {
-  //   if (productSectionRef.current) {
-  //     productSectionRef.current.scrollIntoView({ behavior: "smooth" });
-  //   }
-  // }, [category, brand, sortByPrice, sortByDate, search, priceRange]);
+  const formRef = useRef(null);
 
   const handleSliderChange = (value) => {
     setCurrentPage(1);
