@@ -70,6 +70,7 @@ const Shop = () => {
     setSortByPrice("");
     setSortByDate("");
     setPriceRange([0, 2000]);
+    setSearch("");
     setSubmittedSearch("");
   };
 
