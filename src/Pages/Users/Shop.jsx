@@ -17,8 +17,9 @@ const Shop = () => {
   const [products, setProducts] = useState([]);
   const formRef = useRef(null);
   const [priceRange, setPriceRange] = useState([0, 2000]);
-  console.log(priceRange);
+
   const handleSliderChange = (value) => {
+    setCurrentPage(1);
     setPriceRange(value);
   };
 
@@ -27,7 +28,7 @@ const Shop = () => {
       const { data } = await axios.get(
         `${import.meta.env.VITE_API_URL}/products?page=${
           currentPage - 1
-        }&size=${itemsPerPage}&category=${category}&brand=${brand}&sortByPrice=${sortByPrice}&sortByDate=${sortByDate}&search=${search}`
+        }&size=${itemsPerPage}&category=${category}&brand=${brand}&priceRange=${priceRange}&sortByPrice=${sortByPrice}&sortByDate=${sortByDate}&search=${search}`
       );
       setProducts(data);
     };
@@ -40,6 +41,7 @@ const Shop = () => {
     sortByPrice,
     search,
     sortByDate,
+    priceRange,
   ]);
 
   useEffect(() => {
@@ -47,13 +49,13 @@ const Shop = () => {
       const { data } = await axios.get(
         `${
           import.meta.env.VITE_API_URL
-        }/getCount?category=${category}&brand=${brand}&search=${search}`
+        }/getCount?category=${category}&brand=${brand}&search=${search}&priceRange=${priceRange}`
       );
       console.log(data.count);
       setCount(data.count);
     };
     getCount();
-  }, [category, search, brand]);
+  }, [category, search, brand, priceRange]);
 
   const handlePagination = (val) => {
     setCurrentPage(val);
