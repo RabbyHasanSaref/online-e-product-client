@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import ProductCard from "../../Components/Shared/ProductCard";
 import axios from "axios";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 
 const Shop = () => {
   const [itemsPerPage, setItemsPerPage] = useState(6);
@@ -14,6 +16,11 @@ const Shop = () => {
   const numberOfPages = Math.ceil(count / itemsPerPage);
   const [products, setProducts] = useState([]);
   const formRef = useRef(null);
+  const [priceRange, setPriceRange] = useState([0, 2000]);
+  console.log(priceRange);
+  const handleSliderChange = (value) => {
+    setPriceRange(value);
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -58,6 +65,7 @@ const Shop = () => {
     setSortByPrice("");
     setSortByDate("");
     setSearch("");
+    setPriceRange([0, 2000]);
     if (formRef.current) {
       formRef.current.reset();
     }
@@ -75,7 +83,7 @@ const Shop = () => {
     <div className="container mx-auto min-h-[calc(100vh-302px)] my-10 flex flex-col justify-between">
       <div>
         {/* tablet/pc  */}
-        <div className="hidden md:flex flex-col md:flex-row md:justify-center md:items-center gap-5 flex-wrap flex-shrink">
+        <div className="hidden md:flex flex-col md:flex-row md:justify-start md:items-center gap-5 flex-wrap flex-shrink">
           {/* filter by category  */}
 
           {/* filter by category name  */}
@@ -290,6 +298,39 @@ const Shop = () => {
               Reset
             </button>
           </div>
+        </div>
+
+        {/* price range  */}
+        <div className="p-6 bg-white shadow-md rounded-md mt-4">
+          <h3 className="text-lg font-semibold mb-3">Select Price Range</h3>
+          <Slider
+            range
+            min={0}
+            max={2000}
+            value={priceRange}
+            onChange={handleSliderChange}
+            trackStyle={[{ backgroundColor: "#F43F5E", height: 8 }]}
+            handleStyle={[
+              {
+                borderColor: "#4A90E2",
+                height: 24,
+                width: 24,
+                marginTop: -8,
+              },
+              {
+                borderColor: "#4A90E2",
+                height: 24,
+                width: 24,
+                marginTop: -8,
+              },
+            ]}
+            railStyle={{ backgroundColor: "#e5e7eb", height: 8 }}
+          />
+
+          <p className="mt-3 text-gray-600">
+            Price Range: <span className="font-semibold">${priceRange[0]}</span>{" "}
+            - <span className="font-semibold">${priceRange[1]}</span>
+          </p>
         </div>
 
         {/* product cards */}
