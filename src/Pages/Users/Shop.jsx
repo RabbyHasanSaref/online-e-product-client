@@ -20,14 +20,12 @@ const Shop = () => {
   const [products, setProducts] = useState([]);
   const formRef = useRef(null);
   const [priceRange, setPriceRange] = useState([0, 2000]);
-  const productSectionRef = useRef(null);
 
-  useEffect(() => {
-    if (productSectionRef.current) {
-      console.log("ji")
-      // productSectionRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [category, brand, sortByPrice, sortByDate, search, priceRange]);
+  // useEffect(() => {
+  //   if (productSectionRef.current) {
+  //     productSectionRef.current.scrollIntoView({ behavior: "smooth" });
+  //   }
+  // }, [category, brand, sortByPrice, sortByDate, search, priceRange]);
 
   const handleSliderChange = (value) => {
     setCurrentPage(1);
@@ -324,7 +322,6 @@ const Shop = () => {
 
         {/* price range  */}
         <div
-          ref={productSectionRef}
           className="p-6 bg-white shadow-md rounded-md mt-4 z-30"
         >
           <h3 className="text-lg font-semibold mb-3">Select Price Range</h3>
