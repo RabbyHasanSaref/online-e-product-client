@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "../../Components/Shared/ProductCard";
 import axios from "axios";
 import Slider from "rc-slider";
@@ -13,11 +13,11 @@ const Shop = () => {
   const [sortByPrice, setSortByPrice] = useState("");
   const [sortByDate, setSortByDate] = useState("");
   const [search, setSearch] = useState("");
+  const [submittedSearch, setSubmittedSearch] = useState("");
   const [count, setCount] = useState(0);
   const numberOfPages = Math.ceil(count / itemsPerPage);
   const [products, setProducts] = useState([]);
   const [priceRange, setPriceRange] = useState([0, 2000]);
-  const formRef = useRef(null);
 
   const handleSliderChange = (value) => {
     setCurrentPage(1);
@@ -29,7 +29,7 @@ const Shop = () => {
       const { data } = await axios.get(
         `${import.meta.env.VITE_API_URL}/products?page=${
           currentPage - 1
-        }&size=${itemsPerPage}&category=${category}&brand=${brand}&priceRange=${priceRange}&sortByPrice=${sortByPrice}&sortByDate=${sortByDate}&search=${search}`,
+        }&size=${itemsPerPage}&category=${category}&brand=${brand}&priceRange=${priceRange}&sortByPrice=${sortByPrice}&sortByDate=${sortByDate}&search=${submittedSearch}`,
         { withCredentials: true }
       );
       setProducts(data);
@@ -41,7 +41,7 @@ const Shop = () => {
     category,
     brand,
     sortByPrice,
-    search,
+    submittedSearch,
     sortByDate,
     priceRange,
   ]);
@@ -51,13 +51,13 @@ const Shop = () => {
       const { data } = await axios.get(
         `${
           import.meta.env.VITE_API_URL
-        }/getCount?category=${category}&brand=${brand}&search=${search}&priceRange=${priceRange}`,
+        }/getCount?category=${category}&brand=${brand}&search=${submittedSearch}&priceRange=${priceRange}`,
         { withCredentials: true }
       );
       setCount(data.count);
     };
     getCount();
-  }, [category, search, brand, priceRange]);
+  }, [category, submittedSearch, brand, priceRange]);
 
   const handlePagination = (val) => {
     setCurrentPage(val);
@@ -69,18 +69,16 @@ const Shop = () => {
     setBrand("");
     setSortByPrice("");
     setSortByDate("");
-    setSearch("");
     setPriceRange([0, 2000]);
-    if (formRef.current) {
-      formRef.current.reset();
-    }
+    setSubmittedSearch("");
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
     const form = e.target;
     const searchInput = form.search.value;
-    setSearch(searchInput);
+    setSubmittedSearch(searchInput);
+    setCurrentPage(1);
   };
 
   const pages = [...Array(numberOfPages).keys()].map((element) => element + 1);
@@ -138,13 +136,15 @@ const Shop = () => {
           </div>
 
           {/* Search Form */}
-          <form ref={formRef} onSubmit={handleSearch}>
+          <form onSubmit={handleSearch}>
             <div className="flex p-1 overflow-hidden border rounded-lg    focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
               <input
                 className="px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent"
                 type="text"
                 name="search"
+                value={search}
                 placeholder="Enter Product Name"
+                onChange={(e) => setSearch(e.target.value)}
               />
 
               <button
@@ -242,16 +242,13 @@ const Shop = () => {
           </div>
 
           {/* Search Form */}
-          <form
-            ref={formRef}
-            onSubmit={handleSearch}
-            className="flex-1 min-w-[200px]"
-          >
+          <form onSubmit={handleSearch} className="flex-1 min-w-[200px]">
             <div className="flex border rounded-lg overflow-hidden">
               <input
                 className="px-4 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none flex-1"
                 type="text"
                 name="search"
+                value={search}
                 placeholder="Enter Product Name"
               />
               <button
