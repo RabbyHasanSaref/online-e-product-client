@@ -33,7 +33,7 @@ const Nav = () => {
     });
   };
   return (
-    <nav className="w-full md:py-4 py-2 bg-white shadow-md lg:h-[114px] lg:flex flex-col items-center justify-center">
+    <nav className="w-full fixed top-0 z-20 md:py-4 py-2 bg-white shadow-md lg:h-[114px] lg:flex flex-col items-center justify-center">
       <div className="flex justify-between items-center mx-auto w-[90%] py-4">
         <div>
           <Link href="/" className="font-bold text-xl text-rose-500">

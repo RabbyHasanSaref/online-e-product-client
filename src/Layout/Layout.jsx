@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <div className="font-poppins">
       <Nav />
-      <div className="w-[90%] mx-auto">
+      <div className="w-[90%] mx-auto z-10 mt-[106px] md:mt-[154px]">
         <Outlet />
       </div>
       <Footer />

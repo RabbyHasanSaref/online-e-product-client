@@ -4,8 +4,10 @@ import axios from "axios";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import SectionStart from "../../Components/Shared/SectionStart";
+import Loading from "../../Components/Shared/Loading";
 
 const Shop = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
   const [category, setCategory] = useState("");
@@ -22,7 +24,8 @@ const Shop = () => {
 
   useEffect(() => {
     if (productSectionRef.current) {
-      productSectionRef.current.scrollIntoView({ behavior: "smooth" });
+      console.log("ji")
+      // productSectionRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [category, brand, sortByPrice, sortByDate, search, priceRange]);
 
@@ -33,12 +36,14 @@ const Shop = () => {
 
   useEffect(() => {
     const getData = async () => {
+      setIsLoading(true);
       const { data } = await axios.get(
         `${import.meta.env.VITE_API_URL}/products?page=${
           currentPage - 1
         }&size=${itemsPerPage}&category=${category}&brand=${brand}&priceRange=${priceRange}&sortByPrice=${sortByPrice}&sortByDate=${sortByDate}&search=${search}`
       );
       setProducts(data);
+      setIsLoading(false);
     };
     getData();
   }, [
@@ -69,6 +74,7 @@ const Shop = () => {
   };
 
   const handleReset = () => {
+    setCurrentPage(1);
     setCategory("");
     setBrand("");
     setSortByPrice("");
@@ -88,6 +94,8 @@ const Shop = () => {
   };
 
   const pages = [...Array(numberOfPages).keys()].map((element) => element + 1);
+
+  // if (isLoading) return <Loading />;
   return (
     <div className="container mx-auto min-h-[calc(100vh-302px)] my-10 flex flex-col justify-between">
       <div>
@@ -317,7 +325,7 @@ const Shop = () => {
         {/* price range  */}
         <div
           ref={productSectionRef}
-          className="p-6 bg-white shadow-md rounded-md mt-4"
+          className="p-6 bg-white shadow-md rounded-md mt-4 z-30"
         >
           <h3 className="text-lg font-semibold mb-3">Select Price Range</h3>
           <Slider
