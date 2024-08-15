@@ -3,6 +3,7 @@ import ProductCard from "../../Components/Shared/ProductCard";
 import axios from "axios";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import SectionStart from "../../Components/Shared/SectionStart";
 
 const Shop = () => {
   const [itemsPerPage, setItemsPerPage] = useState(6);
@@ -51,7 +52,6 @@ const Shop = () => {
           import.meta.env.VITE_API_URL
         }/getCount?category=${category}&brand=${brand}&search=${search}&priceRange=${priceRange}`
       );
-      console.log(data.count);
       setCount(data.count);
     };
     getCount();
@@ -84,6 +84,8 @@ const Shop = () => {
   return (
     <div className="container mx-auto min-h-[calc(100vh-302px)] my-10 flex flex-col justify-between">
       <div>
+        {/* heading  */}
+        <SectionStart heading={"ShopEase near your hand!"} subHeading={"Shop Now with filtering your Demands"} />
         {/* tablet/pc  */}
         <div className="hidden md:flex flex-col md:flex-row md:justify-start md:items-center gap-5 flex-wrap flex-shrink">
           {/* filter by category  */}
