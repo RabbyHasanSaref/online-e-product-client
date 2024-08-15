@@ -4,10 +4,8 @@ import axios from "axios";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import SectionStart from "../../Components/Shared/SectionStart";
-import Loading from "../../Components/Shared/Loading";
 
 const Shop = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
   const [category, setCategory] = useState("");
@@ -34,7 +32,6 @@ const Shop = () => {
 
   useEffect(() => {
     const getData = async () => {
-      setIsLoading(true);
       const { data } = await axios.get(
         `${import.meta.env.VITE_API_URL}/products?page=${
           currentPage - 1
@@ -42,7 +39,6 @@ const Shop = () => {
         { withCredentials: true }
       );
       setProducts(data);
-      setIsLoading(false);
     };
     getData();
   }, [
@@ -95,7 +91,7 @@ const Shop = () => {
 
   const pages = [...Array(numberOfPages).keys()].map((element) => element + 1);
 
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
   return (
     <div className="container mx-auto min-h-[calc(100vh-302px)] my-10 flex flex-col justify-between">
       <div>
