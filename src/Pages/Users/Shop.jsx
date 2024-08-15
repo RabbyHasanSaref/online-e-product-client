@@ -18,6 +18,13 @@ const Shop = () => {
   const [products, setProducts] = useState([]);
   const formRef = useRef(null);
   const [priceRange, setPriceRange] = useState([0, 2000]);
+  const productSectionRef = useRef(null);
+
+  useEffect(() => {
+    if (productSectionRef.current) {
+      productSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [category, brand, sortByPrice, sortByDate, search, priceRange]);
 
   const handleSliderChange = (value) => {
     setCurrentPage(1);
@@ -85,7 +92,10 @@ const Shop = () => {
     <div className="container mx-auto min-h-[calc(100vh-302px)] my-10 flex flex-col justify-between">
       <div>
         {/* heading  */}
-        <SectionStart heading={"ShopEase near your hand!"} subHeading={"Shop Now with filtering your Demands"} />
+        <SectionStart
+          heading={"ShopEase near your hand!"}
+          subHeading={"Shop Now with filtering your Demands"}
+        />
         {/* tablet/pc  */}
         <div className="hidden md:flex flex-col md:flex-row md:justify-start md:items-center gap-5 flex-wrap flex-shrink">
           {/* filter by category  */}
@@ -305,7 +315,10 @@ const Shop = () => {
         </div>
 
         {/* price range  */}
-        <div className="p-6 bg-white shadow-md rounded-md mt-4">
+        <div
+          ref={productSectionRef}
+          className="p-6 bg-white shadow-md rounded-md mt-4"
+        >
           <h3 className="text-lg font-semibold mb-3">Select Price Range</h3>
           <Slider
             range
@@ -353,6 +366,7 @@ const Shop = () => {
         )}
       </div>
 
+      {/* buttons  */}
       {products.length > 0 && (
         <div className="flex justify-center mt-12">
           {/* previous btn */}
