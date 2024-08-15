@@ -168,7 +168,7 @@ const Register = () => {
                  {loading ? (
                 <TbFidgetSpinner className="animate-spin m-auto" />
               ) : (
-                "Login"
+                "Register"
               )}
               </button>
             </div>
