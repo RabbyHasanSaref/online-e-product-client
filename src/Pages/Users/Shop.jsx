@@ -95,7 +95,7 @@ const Shop = () => {
 
   const pages = [...Array(numberOfPages).keys()].map((element) => element + 1);
 
-  // if (isLoading) return <Loading />;
+  if (isLoading) return <Loading />;
   return (
     <div className="container mx-auto min-h-[calc(100vh-302px)] my-10 flex flex-col justify-between">
       <div>
