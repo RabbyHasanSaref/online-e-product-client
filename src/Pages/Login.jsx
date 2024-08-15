@@ -1,15 +1,11 @@
 import { FaUserAlt } from "react-icons/fa";
-import {
-  Link,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import toast from "react-hot-toast";
+import { TbFidgetSpinner } from "react-icons/tb";
 
 const Login = () => {
-  const { signIn, googleLogin, setLoading, update, setUpdate } =
-    useAuth();
+  const { signIn, googleLogin, setLoading, loading, update, setUpdate } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -27,6 +23,9 @@ const Login = () => {
     } catch (err) {
       setLoading(false);
       toast.error(err.message);
+    } finally {
+      form.reset();
+      setLoading(false);
     }
   };
 
@@ -36,10 +35,11 @@ const Login = () => {
       navigate(location.state ? location.state : "/");
       toast.success("Login Successful");
     } catch (err) {
+      setLoading(false);
       toast.error(err.message);
     }
   };
-
+  
   return (
     <div className="flex justify-center items-center min-h-[100vh]">
       <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-xl h-[600px] lg:max-w-4xl">
@@ -134,7 +134,11 @@ const Login = () => {
                 type="submit"
                 className="w-full bg-rose-500 px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50"
               >
-                Sign In
+                {loading ? (
+                <TbFidgetSpinner className="animate-spin m-auto" />
+              ) : (
+                "Login"
+              )}
               </button>
             </div>
           </form>
