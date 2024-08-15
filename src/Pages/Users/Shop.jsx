@@ -38,7 +38,8 @@ const Shop = () => {
       const { data } = await axios.get(
         `${import.meta.env.VITE_API_URL}/products?page=${
           currentPage - 1
-        }&size=${itemsPerPage}&category=${category}&brand=${brand}&priceRange=${priceRange}&sortByPrice=${sortByPrice}&sortByDate=${sortByDate}&search=${search}`
+        }&size=${itemsPerPage}&category=${category}&brand=${brand}&priceRange=${priceRange}&sortByPrice=${sortByPrice}&sortByDate=${sortByDate}&search=${search}`,
+        { withCredentials: true }
       );
       setProducts(data);
       setIsLoading(false);
@@ -60,7 +61,8 @@ const Shop = () => {
       const { data } = await axios.get(
         `${
           import.meta.env.VITE_API_URL
-        }/getCount?category=${category}&brand=${brand}&search=${search}&priceRange=${priceRange}`
+        }/getCount?category=${category}&brand=${brand}&search=${search}&priceRange=${priceRange}`,
+        { withCredentials: true }
       );
       setCount(data.count);
     };
@@ -321,9 +323,7 @@ const Shop = () => {
         </div>
 
         {/* price range  */}
-        <div
-          className="p-6 bg-white shadow-md rounded-md mt-4 z-30"
-        >
+        <div className="p-6 bg-white shadow-md rounded-md mt-4 z-30">
           <h3 className="text-lg font-semibold mb-3">Select Price Range</h3>
           <Slider
             range

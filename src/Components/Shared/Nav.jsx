@@ -180,7 +180,6 @@ export default Nav;
 
 const navLinks = [
   { name: "Shop", path: "/" },
-  { name: "About", path: "/about" },
-  //   { name: "Shop", path: "/shop" },
-  { name: "Contact Us", path: "/contact" },
+  // { name: "About", path: "/about" },
+  // { name: "Contact Us", path: "/contact" },
 ];
