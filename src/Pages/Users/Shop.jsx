@@ -200,11 +200,11 @@ const Shop = () => {
           </button>
         </div>
         {/* mobile  */}
-        <div className="md:hidden flex flex-col md:flex-row md:justify-between md:items-center gap-4 md:gap-6 flex-wrap">
+        <div className="md:hidden flex flex-col justify-start items-start gap-4">
           {/* filter by category  */}
 
           {/* filter by category name  */}
-          <div className="flex-1 min-w-[200px]">
+          <div className="w-full">
             <select
               onChange={(e) => {
                 setCategory(e.target.value);
@@ -225,7 +225,7 @@ const Shop = () => {
           </div>
 
           {/* filter by brand name  */}
-          <div className="flex-1 min-w-[200px]">
+          <div className="w-full">
             <select
               onChange={(e) => {
                 setBrand(e.target.value);
@@ -243,8 +243,8 @@ const Shop = () => {
           </div>
 
           {/* Search Form */}
-          <form onSubmit={handleSearch} className="flex-1 min-w-[200px]">
-            <div className="flex border rounded-lg overflow-hidden">
+          <form onSubmit={handleSearch} className="w-full">
+            <div className="flex border rounded-lg overflow-hidden flex-wrap">
               <input
                 className="px-4 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none flex-1"
                 type="text"
@@ -255,7 +255,7 @@ const Shop = () => {
               />
               <button
                 type="submit"
-                className="px-4 py-2 text-sm font-medium text-gray-100 uppercase transition-colors duration-300 transform bg-rose-500 rounded-r-md hover:bg-rose-600 focus:outline-none"
+                className="px-4 py-2 text-sm font-medium text-gray-100 uppercase transition-colors duration-300 transform bg-rose-500 rounded-r-md hover:bg-rose-600 focus:outline-none w-full"
               >
                 Search
               </button>
@@ -263,7 +263,7 @@ const Shop = () => {
           </form>
 
           {/* Sort By Price */}
-          <div className="flex-1 min-w-[200px]">
+          <div className="w-full">
             <select
               onChange={(e) => {
                 setSortByPrice(e.target.value);
@@ -282,7 +282,7 @@ const Shop = () => {
           </div>
 
           {/* Sort By Date */}
-          <div className="flex-1 min-w-[200px]">
+          <div className="w-full">
             <select
               onChange={(e) => {
                 setSortByDate(e.target.value);
@@ -301,7 +301,7 @@ const Shop = () => {
           </div>
 
           {/* Reset Button */}
-          <div className="flex-1 min-w-[200px]">
+          <div className="w-full">
             <button
               onClick={handleReset}
               className="w-full py-2 text-sm font-medium text-white bg-gray-700 rounded-md hover:bg-gray-800 focus:outline-none"
