@@ -251,6 +251,7 @@ const Shop = () => {
                 name="search"
                 value={search}
                 placeholder="Enter Product Name"
+                onChange={(e) => setSearch(e.target.value)}
               />
               <button
                 type="submit"
