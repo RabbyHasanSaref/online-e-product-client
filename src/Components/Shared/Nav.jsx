@@ -157,11 +157,7 @@ const Nav = () => {
               <li className="mt-2">
                 {user && (
                   <button
-                    onClick={() => {
-                      logOut().then(() => {
-                        toast.success("Log Out Successful");
-                      });
-                    }}
+                    onClick={handleLogOut}
                     className="bg-gray-200 block text-center"
                   >
                     Logout
