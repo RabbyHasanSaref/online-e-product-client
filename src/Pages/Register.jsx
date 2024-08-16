@@ -64,7 +64,7 @@ const Register = () => {
           </div>
 
           <p className="mt-3 text-xl text-center text-gray-600 ">
-            Welcome back!
+            Hello World!
           </p>
 
           <div
@@ -101,7 +101,7 @@ const Register = () => {
             <span className="w-1/5 border-b  lg:w-1/4"></span>
 
             <div className="text-xs text-center text-gray-500 uppercase  hover:underline">
-              or login with email
+              or Register with email
             </div>
 
             <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
