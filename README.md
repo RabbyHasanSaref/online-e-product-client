@@ -3,7 +3,7 @@
 ### online E-product is a full-stack single-page web application designed to provide a seamless product browsing experience. This project focuses on implementing core functionalities such as pagination, searching, categorization, and sorting of products. The aim is to create an intuitive user interface where users can efficiently search for products, filter them by various criteria, and sort them based on their preferences.
 
 ### Live Site URL: 
-* Firebase : https://online-e-product.netlify.app/
+*  https://online-e-product.netlify.app/
 
 ## How to Run Locally
 
