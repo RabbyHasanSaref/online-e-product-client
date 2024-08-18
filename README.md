@@ -1,14 +1,14 @@
-# ShopEase - Client
+# online-e-product - Client
 ## Project Overview
-### ShopEase is a full-stack single-page web application designed to provide a seamless product browsing experience. This project focuses on implementing core functionalities such as pagination, searching, categorization, and sorting of products. The aim is to create an intuitive user interface where users can efficiently search for products, filter them by various criteria, and sort them based on their preferences.
+### online E-product is a full-stack single-page web application designed to provide a seamless product browsing experience. This project focuses on implementing core functionalities such as pagination, searching, categorization, and sorting of products. The aim is to create an intuitive user interface where users can efficiently search for products, filter them by various criteria, and sort them based on their preferences.
 
 ### Live Site URL: 
-* Firebase : https://shopease-37409.web.app
+* Firebase : https://online-e-product.netlify.app/
 
 ## How to Run Locally
 
 ```js
-1. Clone the Repo: "https://github.com/maybemahdi/ShopEase-Client"
+1. Clone the Repo: "https://github.com/RabbyHasanSaref/online-e-product-client.git"
 2. Install all Dependencies: "npm i"
 3. Replace Env File
 4. Start the Server: "npm run dev" or "yarn dev"
