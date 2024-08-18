@@ -36,8 +36,8 @@ const Nav = () => {
     <nav className="w-full fixed top-0 z-20 md:py-4 py-2 bg-white shadow-md lg:h-[114px] lg:flex flex-col items-center justify-center">
       <div className="flex justify-between items-center mx-auto w-[90%] py-4">
         <div>
-          <Link href="/" className="font-bold text-xl text-rose-500">
-            ShopEase
+          <Link href="/" className="font-bold text-xl text-black">
+            Online E-Product
           </Link>
         </div>
         <div className="flex items-center justify-center gap-6">
@@ -50,8 +50,8 @@ const Nav = () => {
                       isPending
                         ? "pending"
                         : isActive
-                        ? "text-rose-500 font-semibold flex gap-4 items-center"
-                        : "hover:text-rose-500 transition-all duration-300 font-semibold flex gap-4 items-center"
+                        ? "text-black font-semibold flex gap-4 items-center"
+                        : "hover:text-black transition-all duration-300 font-semibold flex gap-4 items-center"
                     }
                     to={link.path}
                   >
@@ -66,8 +66,8 @@ const Nav = () => {
                       isPending
                         ? "pending"
                         : isActive
-                        ? "text-rose-500 font-semibold flex gap-4 items-center"
-                        : "hover:text-rose-500 transition-all duration-300 font-semibold flex gap-4 items-center"
+                        ? "text-black font-semibold flex gap-4 items-center"
+                        : "hover:text-black transition-all duration-300 font-semibold flex gap-4 items-center"
                     }
                     to={"/login"}
                   >
@@ -101,7 +101,7 @@ const Nav = () => {
                 tabIndex={0}
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
               >
-                <p className="font-bold text-rose-500">{user?.displayName}</p>
+                <p className="font-bold text-black">{user?.displayName}</p>
                 <li className="mt-2">
                   {user && (
                     <button
@@ -137,8 +137,8 @@ const Nav = () => {
                   isPending
                     ? "pending"
                     : isActive
-                    ? "text-rose-500 font-semibold flex gap-4 items-center"
-                    : "hover:text-rose-500 transition-all duration-300 font-semibold flex gap-4 items-center"
+                    ? "text-black font-semibold flex gap-4 items-center"
+                    : "hover:text-black transition-all duration-300 font-semibold flex gap-4 items-center"
                 }
                 to={link.path}
               >
@@ -153,7 +153,7 @@ const Nav = () => {
               tabIndex={0}
               className="menu menu-sm mt-1 z-[1] p-2 shadow rounded-box"
             >
-              <p className="text-rose-500 font-bold">{user?.displayName}</p>
+              <p className="text-black font-bold">{user?.displayName}</p>
               <li className="mt-2">
                 {user && (
                   <button
@@ -175,7 +175,7 @@ const Nav = () => {
 export default Nav;
 
 const navLinks = [
-  { name: "Shop", path: "/" },
-  // { name: "About", path: "/about" },
-  // { name: "Contact Us", path: "/contact" },
+  { name: "Home", path: "/" },
+  { name: "About", path: "" },
+  { name: "Contact Us", path: "" },
 ];

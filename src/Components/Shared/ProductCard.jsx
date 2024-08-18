@@ -9,29 +9,30 @@ const ProductCard = ({ product }) => {
     ratings,
     creationDate,
   } = product;
+
   return (
-    <div className="rounded-lg overflow-hidden shadow-lg bg-white hover:shadow-2xl transition-shadow duration-300">
+    <div className="rounded-lg overflow-hidden shadow-lg bg-gray-800 hover:shadow-xl transition-shadow duration-300">
       <img
         className="w-full h-48 object-cover"
         src={productImage}
         alt={productName}
       />
       <div className="p-6">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+        <h2 className="text-2xl font-semibold text-white mb-2">
           {productName}
         </h2>
-        <p className="text-gray-600 text-sm mb-4">{description}</p>
+        <p className="text-gray-400 text-sm mb-4">{description}</p>
         <div className="flex items-center justify-between mb-4">
-          <span className="text-lg font-bold text-rose-500">${price}</span>
-          <span className="text-sm text-gray-500">{category}</span>
+          <span className="text-lg font-bold text-emerald-400">${price}</span>
+          <span className="text-sm text-emerald-300">{category}</span>
         </div>
         <div className="flex items-center justify-between">
-          <div className="flex items-center text-yellow-400">
+          <div className="flex items-center">
             {[...Array(5)].map((_, index) => (
               <svg
                 key={index}
                 className={`w-5 h-5 ${
-                  index < ratings ? "text-yellow-400" : "text-gray-300"
+                  index < ratings ? "text-yellow-400" : "text-gray-600"
                 }`}
                 fill="currentColor"
                 viewBox="0 0 24 24"
@@ -40,7 +41,7 @@ const ProductCard = ({ product }) => {
               </svg>
             ))}
           </div>
-          <span className="text-xs text-gray-400">
+          <span className="text-xs text-gray-500">
             {new Date(creationDate).toLocaleString()}
           </span>
         </div>

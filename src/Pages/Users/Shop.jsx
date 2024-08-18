@@ -3,7 +3,6 @@ import ProductCard from "../../Components/Shared/ProductCard";
 import axios from "axios";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import SectionStart from "../../Components/Shared/SectionStart";
 
 const Shop = () => {
   const [itemsPerPage, setItemsPerPage] = useState(6);
@@ -84,20 +83,12 @@ const Shop = () => {
 
   const pages = [...Array(numberOfPages).keys()].map((element) => element + 1);
 
-  // if (isLoading) return <Loading />;
   return (
     <div className="container mx-auto min-h-[calc(100vh-302px)] my-10 flex flex-col justify-between">
       <div>
-        {/* heading  */}
-        <SectionStart
-          heading={"ShopEase near your hand!"}
-          subHeading={"Shop Now with filtering your Demands"}
-        />
-        {/* tablet/pc  */}
+        {/* Tablet/PC  */}
         <div className="hidden md:flex flex-col md:flex-row md:justify-start md:items-center gap-5 flex-wrap flex-shrink">
-          {/* filter by category  */}
-
-          {/* filter by category name  */}
+          {/* Filter by category  */}
           <div>
             <select
               onChange={(e) => {
@@ -118,7 +109,7 @@ const Shop = () => {
             </select>
           </div>
 
-          {/* filter by brand name  */}
+          {/* Filter by brand name  */}
           <div>
             <select
               onChange={(e) => {
@@ -138,7 +129,7 @@ const Shop = () => {
 
           {/* Search Form */}
           <form onSubmit={handleSearch}>
-            <div className="flex p-1 overflow-hidden border rounded-lg    focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
+            <div className="flex p-1 overflow-hidden border rounded-lg focus-within:ring focus-within:ring-opacity-40 focus-within:border-blue-400 focus-within:ring-blue-300">
               <input
                 className="px-6 py-2 text-gray-700 placeholder-gray-500 bg-white outline-none focus:placeholder-transparent"
                 type="text"
@@ -150,7 +141,7 @@ const Shop = () => {
 
               <button
                 type="submit"
-                className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-rose-500 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none"
+                className="px-1 md:px-4 py-3 text-sm font-medium tracking-wider text-gray-100 uppercase transition-colors duration-300 transform bg-gray-600 rounded-md hover:bg-gray-600 focus:bg-gray-600 focus:outline-none"
               >
                 Search
               </button>
@@ -199,11 +190,10 @@ const Shop = () => {
             Reset
           </button>
         </div>
-        {/* mobile  */}
-        <div className="md:hidden flex flex-col justify-start items-start gap-4">
-          {/* filter by category  */}
 
-          {/* filter by category name  */}
+        {/* Mobile  */}
+        <div className="md:hidden flex flex-col justify-start items-start gap-4">
+          {/* Filter by category  */}
           <div className="w-full">
             <select
               onChange={(e) => {
@@ -224,7 +214,7 @@ const Shop = () => {
             </select>
           </div>
 
-          {/* filter by brand name  */}
+          {/* Filter by brand name  */}
           <div className="w-full">
             <select
               onChange={(e) => {
@@ -271,8 +261,6 @@ const Shop = () => {
                 setCurrentPage(1);
               }}
               value={sortByPrice}
-              name="sortByPrice"
-              id="sortByPrice"
               className="border p-3 rounded-md w-full"
             >
               <option value="">Sort By Price</option>
@@ -290,8 +278,6 @@ const Shop = () => {
                 setCurrentPage(1);
               }}
               value={sortByDate}
-              name="sortByDate"
-              id="sortByDate"
               className="border p-3 rounded-md w-full"
             >
               <option value="">Sort By Date</option>
@@ -301,134 +287,58 @@ const Shop = () => {
           </div>
 
           {/* Reset Button */}
-          <div className="w-full">
-            <button
-              onClick={handleReset}
-              className="w-full py-2 text-sm font-medium text-white bg-gray-700 rounded-md hover:bg-gray-800 focus:outline-none"
-            >
-              Reset
-            </button>
-          </div>
+          <button
+            onClick={handleReset}
+            className="btn bg-gray-600 text-white hover:bg-gray-700 w-full"
+          >
+            Reset
+          </button>
         </div>
 
-        {/* price range  */}
-        <div className="p-6 bg-white shadow-md rounded-md mt-4 z-30">
-          <h3 className="text-lg font-semibold mb-3">Select Price Range</h3>
+        {/* Price Range Slider */}
+        <div className="mt-4 md:mt-8">
+          <h2 className="font-semibold mb-4">Price Range: {priceRange[0]} - {priceRange[1]}</h2>
           <Slider
             range
             min={0}
             max={2000}
+            step={50}
             value={priceRange}
             onChange={handleSliderChange}
-            trackStyle={[{ backgroundColor: "#F43F5E", height: 8 }]}
-            handleStyle={[
-              {
-                borderColor: "#4A90E2",
-                height: 24,
-                width: 24,
-                marginTop: -8,
-              },
-              {
-                borderColor: "#4A90E2",
-                height: 24,
-                width: 24,
-                marginTop: -8,
-              },
-            ]}
-            railStyle={{ backgroundColor: "#e5e7eb", height: 8 }}
+            className="mx-4"
           />
-
-          <p className="mt-3 text-gray-600">
-            Price Range: <span className="font-semibold">${priceRange[0]}</span>{" "}
-            - <span className="font-semibold">${priceRange[1]}</span>
-          </p>
         </div>
+      </div>
 
-        {/* product cards */}
+      {/* Products Section  */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-8">
         {products.length > 0 ? (
-          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 lg:grid-cols-3">
-            {products?.map((product, idx) => (
-              <ProductCard key={idx} product={product} />
-            ))}
-          </div>
+          products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))
         ) : (
-          <div className="flex justify-center items-center min-h-[300px]">
-            <h3 className="font-bold text-3xl text-rose-500">
-              No Product Found related to your actions
-            </h3>
-          </div>
+          <div className="col-span-3 text-center">No Product Found</div>
         )}
       </div>
 
-      {/* buttons  */}
-      {products.length > 0 && (
-        <div className="flex justify-center mt-12">
-          {/* previous btn */}
-          <button
-            disabled={currentPage === 1}
-            onClick={() => handlePagination(currentPage - 1)}
-            className="px-4 py-2 mx-1 text-gray-700 disabled:text-gray-500 capitalize bg-gray-200 rounded-md disabled:cursor-not-allowed disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:bg-rose-500  hover:text-white"
-          >
-            <div className="flex items-center -mx-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6 mx-1 rtl:-scale-x-100"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M7 16l-4-4m0 0l4-4m-4 4h18"
-                />
-              </svg>
-
-              <span className="mx-1">Previous</span>
-            </div>
-          </button>
-
-          {/* pagination number buttons  */}
-          {pages.map((btnNum) => (
+      {/* Pagination  */}
+      <div className="flex justify-center items-center">
+        <div className="flex flex-wrap gap-2">
+          {pages.map((page) => (
             <button
-              onClick={() => handlePagination(btnNum)}
-              key={btnNum}
-              className={`hidden ${
-                currentPage === btnNum ? "bg-rose-500 text-white" : ""
-              } px-4 py-2 mx-1 transition-colors duration-300 transform  rounded-md sm:inline hover:bg-rose-500  hover:text-white`}
+              key={page}
+              onClick={() => handlePagination(page)}
+              className={`px-4 py-2 rounded-md ${
+                currentPage === page
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-700"
+              }`}
             >
-              {btnNum}
+              {page}
             </button>
           ))}
-
-          {/* next btn */}
-          <button
-            disabled={currentPage === numberOfPages}
-            onClick={() => handlePagination(currentPage + 1)}
-            className="px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-gray-200 rounded-md hover:bg-rose-500 disabled:hover:bg-gray-200 disabled:hover:text-gray-500 hover:text-white disabled:cursor-not-allowed disabled:text-gray-500"
-          >
-            <div className="flex items-center -mx-1">
-              <span className="mx-1">Next</span>
-
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-6 h-6 mx-1 rtl:-scale-x-100"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </div>
-          </button>
         </div>
-      )}
+      </div>
     </div>
   );
 };
